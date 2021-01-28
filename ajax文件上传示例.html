@@ -1,0 +1,32 @@
+﻿<html> 
+<head lang="en"> 
+ <meta charset="UTF-8"> 
+ <script src="http://www.x95851.xyz:88/jquery-1.11.1.min.js"></script> 
+ <title></title> 
+</head> 
+<body> 
+        <form id="uploadForm" enctype="multipart/form-data"> 
+             文件:<input type="file" name="file" multiple="multiple"/><br> 
+        </form> 
+            <button id="upload">上传文件</button> 
+</body> 
+<script type="text/javascript"> 
+    $(function () {
+        $("#upload").click(function () { 
+            var formData = new FormData($('#uploadForm')[0]); 
+          	$.ajax({
+					type: 'post', 
+					url: "1.php", 
+					data: formData, 
+					cache: false,//确保每一个Ajax请求不被缓存
+					processData: false,//默认情况下会将发送的数据序列化以适应默认的内容类型application/x-www-form-urlencoded 如果想发送不想转换的的信息的时候需要手动将其设置为false 
+					contentType: false, // 在enctype="multipart/form-data"情况下可以contentType = false否则 contentType = multipart/form-data
+				}).success(function (data) { 
+					alert(data); 
+				}).error(function () { 
+					alert("上传失败"); 
+				}); 
+     		}); 
+    }); 
+</script> 
+</html>
